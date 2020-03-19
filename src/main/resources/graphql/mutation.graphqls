@@ -1,3 +1,2 @@
 type Mutation {
-  createCourse(name: String!) : Course!
 }

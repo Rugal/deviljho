@@ -1,13 +1,11 @@
 package ga.rugal.demo.springmvc.graphql;
 
-import java.util.Optional;
-
-import ga.rugal.demo.core.dao.CourseDao;
-import ga.rugal.demo.core.dao.RegistrationDao;
-import ga.rugal.demo.core.dao.StudentDao;
-import ga.rugal.demo.core.entity.Course;
-import ga.rugal.demo.core.entity.Registration;
-import ga.rugal.demo.core.entity.Student;
+import ga.rugal.demo.core.entity.FridgeStorage;
+import ga.rugal.demo.core.entity.Item;
+import ga.rugal.demo.core.entity.Tag;
+import ga.rugal.demo.core.service.FridgeStorageService;
+import ga.rugal.demo.core.service.ItemService;
+import ga.rugal.demo.core.service.TagService;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,23 +20,23 @@ import org.springframework.stereotype.Component;
 public class RootQuery implements GraphQLQueryResolver {
 
   @Autowired
-  private CourseDao courseDao;
+  private ItemService itemService;
 
   @Autowired
-  private StudentDao studentDao;
+  private TagService tagService;
 
   @Autowired
-  private RegistrationDao registrationDao;
+  private FridgeStorageService fridgeStorageService;
 
-  public Optional<Student> getStudent(final int id) {
-    return this.studentDao.findById(id);
+  public Iterable<Item> items() {
+    return this.itemService.getDao().findAll();
   }
 
-  public Optional<Course> getCourse(final int id) {
-    return this.courseDao.findById(id);
+  public Iterable<Tag> tags() {
+    return this.tagService.getDao().findAll();
   }
 
-  public Optional<Registration> getRegistration(final int id) {
-    return this.registrationDao.findById(id);
+  public Iterable<FridgeStorage> storages() {
+    return this.fridgeStorageService.getDao().findAll();
   }
 }

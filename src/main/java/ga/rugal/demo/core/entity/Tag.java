@@ -4,7 +4,6 @@ import static config.SystemDefaultProperty.SCHEMA;
 
 import java.time.Instant;
 import java.util.List;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +20,7 @@ import javax.validation.constraints.Size;
 import lombok.Data;
 
 /**
+ * Tag entity.
  *
  * @author sally
  */

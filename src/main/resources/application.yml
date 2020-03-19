@@ -26,7 +26,7 @@ spring:
     active: local
   flyway:
     locations: filesystem:configuration/db/migration
-    schemas: test
+    schemas: fridge
 
 management:
   endpoints:
@@ -36,11 +36,3 @@ management:
           - info
           - health
           - loggers
-
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: full

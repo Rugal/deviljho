@@ -3,7 +3,6 @@ package ga.rugal.demo.core.entity;
 import static config.SystemDefaultProperty.SCHEMA;
 
 import java.time.Instant;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,6 +19,7 @@ import javax.persistence.Table;
 import lombok.Data;
 
 /**
+ * Item Tag entity.
  *
  * @author sally
  */

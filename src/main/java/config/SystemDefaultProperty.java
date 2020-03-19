@@ -9,5 +9,5 @@ public interface SystemDefaultProperty {
 
   String ENCODING = "UTF-8";
 
-  String SCHEMA = "test";
+  String SCHEMA = "fridge";
 }

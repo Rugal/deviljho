@@ -1,22 +1,36 @@
 type Query {
-  course(cid: Int): Course
-  student(sid: Int): Student
-  registration(rid: Int): Registration
+  tags: [Tag!]!
+  items: [Item!]!
+  storages: [FridgeStorage!]!
 }
 
-type Course {
-  cid: Int!
-  name: String
+type Item {
+  iid: Int!
+  name: String!
+  createAt: Int!
+  updateAt: Int!
 }
 
-type Student {
-  sid: Int!
-  name: String
+type Tag {
+  tid: Int!
+  name: String!
+  createAt: Int!
+  updateAt: Int!
 }
 
-type Registration {
-  rid: Int!
-  grade: Int
-  student: Student
-  course: Course
+type ItemTag {
+  itid: Int!
+  name: String!
+  item: Item!
+  tag: Tag!
+  createAt: Int!
+  updateAt: Int!
+}
+
+type FridgeStorage {
+  fsid: Int!
+  quantity: Int!
+  item: Item!
+  createAt: Int!
+  updateAt: Int!
 }

@@ -1,8 +1,6 @@
 package ga.rugal.demo.springmvc.graphql;
 
-import ga.rugal.demo.core.entity.Course;
-import ga.rugal.demo.core.entity.Registration;
-import ga.rugal.demo.core.entity.Student;
+import ga.rugal.demo.core.entity.Item;
 
 import com.coxautodev.graphql.tools.GraphQLResolver;
 
@@ -11,13 +9,5 @@ import com.coxautodev.graphql.tools.GraphQLResolver;
  *
  * @author Rugal Bernstein
  */
-public class RegistrationResolver implements GraphQLResolver<Registration> {
-
-  public Student getStudent(final Registration r) {
-    return r.getStudent();
-  }
-
-  public Course getCourse(final Registration r) {
-    return r.getCourse();
-  }
+public class RegistrationResolver implements GraphQLResolver<Item> {
 }

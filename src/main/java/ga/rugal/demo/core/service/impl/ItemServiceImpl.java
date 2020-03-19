@@ -1,7 +1,7 @@
 package ga.rugal.demo.core.service.impl;
 
-import ga.rugal.demo.core.dao.StudentDao;
-import ga.rugal.demo.core.service.StudentService;
+import ga.rugal.demo.core.dao.ItemDao;
+import ga.rugal.demo.core.service.ItemService;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class ItemServiceImpl implements ItemService {
 
   @Autowired
   @Getter
   @Setter
-  private StudentDao dao;
+  private ItemDao dao;
 }

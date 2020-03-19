@@ -17,39 +17,57 @@ SET row_security = off;
 -- Name: test; Type: SCHEMA; Schema: -; Owner: -
 --
 
-SET search_path = test;
+SET search_path = fridge;
 SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: course; Type: TABLE; Schema: test; Owner: -
+-- Name: item; Type: TABLE; Schema: test; Owner: -
 --
 
-CREATE TABLE course (
-    cid serial PRIMARY KEY,
-    name character varying(20)
+CREATE TABLE item (
+  iid serial PRIMARY KEY,
+  name character varying(20),
+  create_at bigint,
+  update_at bigint
 );
 
 
 --
--- Name: student; Type: TABLE; Schema: test; Owner: -
+-- Name: tag; Type: TABLE; Schema: test; Owner: -
 --
 
-CREATE TABLE student (
-    sid serial PRIMARY KEY,
-    name character varying(20)
+CREATE TABLE tag (
+  tid serial PRIMARY KEY,
+  name character varying(20),
+  create_at bigint,
+  update_at bigint
 );
 
 
 --
--- Name: registration; Type: TABLE; Schema: test; Owner: -
+-- Name: item_tag; Type: TABLE; Schema: test; Owner: -
 --
 
-CREATE TABLE registration (
-    rid serial PRIMARY KEY,
-    sid integer REFERENCES student(sid),
-    cid integer REFERENCES course(cid),
-    grade integer
+CREATE TABLE item_tag (
+  itid serial PRIMARY KEY,
+  tid integer REFERENCES tag(tid),
+  iid integer REFERENCES item(iid),
+  create_at bigint,
+  update_at bigint
+);
+
+
+--
+-- Name: fridge_storage; Type: TABLE; Schema: test; Owner: -
+--
+
+CREATE TABLE fridge_storage (
+  fsid serial PRIMARY KEY,
+  quantity integer,
+  iid integer REFERENCES item(iid),
+  create_at bigint,
+  update_at bigint
 );
 
 
