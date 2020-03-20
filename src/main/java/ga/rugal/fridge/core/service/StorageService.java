@@ -1,5 +1,6 @@
 package ga.rugal.fridge.core.service;
 
+import java.util.Optional;
 import javax.annotation.Nonnull;
 
 import ga.rugal.fridge.core.dao.StorageDao;
@@ -12,7 +13,7 @@ public interface StorageService extends BaseService<StorageDao> {
 
   @Nonnull
   @Transactional
-  Storage consume(@Nonnull Storage s, int number);
+  Optional<Storage> consume(@Nonnull Storage s, int number);
 
   @Nonnull
   @Transactional

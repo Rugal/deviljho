@@ -80,8 +80,10 @@ public class RootMutation implements GraphQLMutationResolver, Mutation {
     if (optional.isEmpty()) {
       throw new RuntimeException("Storage not found");
     }
-    final Storage c = this.storageService.consume(optional.get(), input.getQuantity());
-    return StorageMapper.I.from(c);
+    final Optional<Storage> c = this.storageService.consume(optional.get(), input.getQuantity());
+    return c.isEmpty()
+           ? null
+           : StorageMapper.I.from(c.get());
   }
 
   @Override
