@@ -3,7 +3,7 @@ package config;
 import java.util.ArrayList;
 import java.util.List;
 
-import ga.rugal.demo.springmvc.controller.PackageInfo;
+import ga.rugal.fridge.springmvc.controller.PackageInfo;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

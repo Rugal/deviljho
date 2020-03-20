@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  *
  * @author Rugal Bernstein
  */
-@ComponentScan(basePackageClasses = ga.rugal.demo.springmvc.controller.PackageInfo.class)
+@ComponentScan(basePackageClasses = ga.rugal.fridge.springmvc.controller.PackageInfo.class)
 @Disabled
 public class ControllerUnitTestBase extends UnitTestBase {
 

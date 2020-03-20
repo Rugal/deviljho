@@ -1,7 +1,7 @@
 type Query {
   tags: [Tag!]!
   items: [Item!]!
-  storages: [FridgeStorage!]!
+  storages: [Storage!]!
 }
 
 type Item {
@@ -27,8 +27,8 @@ type ItemTag {
   updateAt: Int!
 }
 
-type FridgeStorage {
-  fsid: Int!
+type Storage {
+  sid: Int!
   quantity: Int!
   item: Item!
   createAt: Int!

@@ -62,8 +62,21 @@ CREATE TABLE item_tag (
 -- Name: fridge_storage; Type: TABLE; Schema: test; Owner: -
 --
 
-CREATE TABLE fridge_storage (
-  fsid serial PRIMARY KEY,
+CREATE TABLE storage (
+  sid serial PRIMARY KEY,
+  quantity integer,
+  iid integer REFERENCES item(iid),
+  create_at bigint,
+  update_at bigint
+);
+
+
+--
+-- Name: consumption; Type: TABLE; Schema: test; Owner: -
+--
+
+CREATE TABLE history (
+  hid serial PRIMARY KEY,
   quantity integer,
   iid integer REFERENCES item(iid),
   create_at bigint,

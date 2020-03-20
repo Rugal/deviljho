@@ -1,2 +1,31 @@
 type Mutation {
+  addItem(input: ItemInput): Item!
+  addTag(input: TagInput): Tag!
+
+  consume(input: ConsumeInput): Storage!
+  fill(input: FillInput): Storage!
+  tagItem(input: TagItemInput): ItemTag!
+}
+
+input ItemInput {
+  name: String!
+}
+
+input TagInput {
+  name: String!
+}
+
+input FillInput {
+  iid: Int!
+  quantity: Int!
+}
+
+input TagItemInput {
+  iid: Int!
+  tid: Int!
+}
+
+input ConsumeInput {
+  sid: Int!
+  quantity: Int!
 }

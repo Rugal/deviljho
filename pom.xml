@@ -31,6 +31,11 @@
     <skip.surefire.tests>true</skip.surefire.tests>
     <skip.failsafe.tests>true</skip.failsafe.tests>
     <jacoco.skip.coverage.check>true</jacoco.skip.coverage.check>
+    
+    <!-- graphql codegen -->
+    <graphql.package.name>${project.groupId}.${project.artifactId}.graphql</graphql.package.name>
+    <graphql.output.directory>${project.build.directory}/generated-sources/graphql</graphql.output.directory>
+    <graphql-codegen.plugin.version>1.4.0</graphql-codegen.plugin.version>
   </properties>
 
   <dependencies>
@@ -204,6 +209,26 @@
           </schemas>
           <configFiles>configuration/db/local.properties</configFiles>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>io.github.kobylynskyi</groupId>
+        <artifactId>graphql-codegen-maven-plugin</artifactId>
+        <version>${graphql-codegen.plugin.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <graphqlSchemaPaths>
+                src/main/resources/graphql/query.graphqls,src/main/resources/graphql/mutation.graphqls
+              </graphqlSchemaPaths>
+              <outputDir>${graphql.output.directory}</outputDir>
+              <packageName>${graphql.package.name}</packageName>
+              <modelNameSuffix>Dto</modelNameSuffix>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
