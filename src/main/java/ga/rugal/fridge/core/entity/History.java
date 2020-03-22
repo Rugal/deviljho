@@ -40,6 +40,9 @@ public class History {
                      sequenceName = SCHEMA + "." + SEQUENCE_NAME)
   private Integer hid;
 
+  /**
+   * Number of item changed. Positive is fill, negative is consume.
+   */
   @Column
   private Integer quantity;
 

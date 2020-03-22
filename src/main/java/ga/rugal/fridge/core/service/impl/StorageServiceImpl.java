@@ -45,7 +45,8 @@ public class StorageServiceImpl implements StorageService {
     if (s.getQuantity() < number) {
       throw new RuntimeException("Not enough storage");
     }
-    this.historyService.getDao().save(new History(s.getItem(), number));
+    // consume is negative
+    this.historyService.getDao().save(new History(s.getItem(), -1 * number));
     if (s.getQuantity() > number) {
       return Optional.of(this.dao.save(s.consume(number)));
     }
@@ -58,7 +59,7 @@ public class StorageServiceImpl implements StorageService {
    * Fill in item with quantity.
    *
    * @param item   item object
-   * @param number fill quantity
+   * @param number fill quantity, positive number
    *
    * @return new storage record
    */

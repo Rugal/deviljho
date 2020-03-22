@@ -2,9 +2,9 @@ type Mutation {
   addItem(input: ItemInput): Item!
   addTag(input: TagInput): Tag!
 
+  tagItem(input: TagItemInput): ItemTag!
   consume(input: ConsumeInput): Storage!
   fill(input: FillInput): Storage!
-  tagItem(input: TagItemInput): ItemTag!
 }
 
 input ItemInput {
@@ -15,14 +15,14 @@ input TagInput {
   name: String!
 }
 
-input FillInput {
-  iid: Int!
-  quantity: Int!
-}
-
 input TagItemInput {
   iid: Int!
   tid: Int!
+}
+
+input FillInput {
+  iid: Int!
+  quantity: Int!
 }
 
 input ConsumeInput {
