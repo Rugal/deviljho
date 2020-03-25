@@ -3,7 +3,6 @@ package ga.rugal.fridge.springmvc.graphql;
 import java.util.Optional;
 
 import ga.rugal.fridge.core.entity.Item;
-import ga.rugal.fridge.core.entity.ItemTag;
 import ga.rugal.fridge.core.entity.Storage;
 import ga.rugal.fridge.core.entity.Tag;
 import ga.rugal.fridge.core.service.ItemService;
@@ -49,14 +48,22 @@ public class RootMutation implements GraphQLMutationResolver, Mutation {
   @Autowired
   private ItemTagService itemTagService;
 
+  private Tag doAddTag(final TagInputDto input) {
+    return this.tagService.getDao().save(TagMapper.I.to(input));
+  }
+
   @Override
   public ItemDto addItem(final ItemInputDto input) throws Exception {
-    return ItemMapper.I.from(this.itemService.getDao().save(ItemMapper.I.to(input)));
+    final Item to = this.itemService.getDao().save(ItemMapper.I.to(input));
+
+    input.getTags().stream()
+            .map(t -> this.itemTagService.attachTag(to, this.doAddTag(t)));
+    return ItemMapper.I.from(to);
   }
 
   @Override
   public TagDto addTag(final TagInputDto input) throws Exception {
-    return TagMapper.I.from(this.tagService.getDao().save(TagMapper.I.to(input)));
+    return TagMapper.I.from(this.doAddTag(input));
   }
 
   @Override
@@ -69,9 +76,9 @@ public class RootMutation implements GraphQLMutationResolver, Mutation {
     if (optionalTag.isEmpty()) {
       throw new RuntimeException("Tag not found");
     }
-    final ItemTag it = this.itemTagService.getDao().save(new ItemTag(optionalItem.get(),
-                                                                     optionalTag.get()));
-    return ItemTagMapper.I.from(it);
+
+    return ItemTagMapper.I.from(this.itemTagService.attachTag(optionalItem.get(),
+                                                              optionalTag.get()));
   }
 
   @Override

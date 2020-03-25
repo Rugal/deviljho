@@ -1,36 +1,37 @@
 type Query {
-  tags: [Tag!]!
-  items: [Item!]!
-  storages: [Storage!]!
+  tags: [Tag!]! @listLength(min: 1, max: 20)
+  items: [Item!]! @listLength(min: 1, max: 10)
+  storages: [Storage!]! @listLength(min: 1, max: 10)
 }
 
 type Item {
-  iid: Int!
-  name: String!
-  createAt: Int!
-  updateAt: Int!
+  iid: Int! @fake(type: number, options: {minNumber: 1, maxNumber: 100})
+  name: String! @fake(type: jobTitle)
+  tags: [Tag!]! @listLength(min: 1, max: 5)
+  createAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
+  updateAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
 }
 
 type Tag {
-  tid: Int!
-  name: String!
-  createAt: Int!
-  updateAt: Int!
+  tid: Int! @fake(type: number, options: {minNumber: 1, maxNumber: 100})
+  name: String! @fake(type: colorName)
+  createAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
+  updateAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
 }
 
 type ItemTag {
-  itid: Int!
-  name: String!
+  itid: Int! @fake(type: number, options: {minNumber: 1, maxNumber: 100})
+  name: String! @fake(type: productName)
   item: Item!
   tag: Tag!
-  createAt: Int!
-  updateAt: Int!
+  createAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
+  updateAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
 }
 
 type Storage {
-  sid: Int!
-  quantity: Int!
+  sid: Int! @fake(type: number, options: {minNumber: 1, maxNumber: 100})
+  quantity: Int! @fake(type: number, options: {minNumber: 1, maxNumber: 10})
   item: Item!
-  createAt: Int!
-  updateAt: Int!
+  createAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
+  updateAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
 }

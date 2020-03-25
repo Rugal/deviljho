@@ -3,12 +3,13 @@ type Mutation {
   addTag(input: TagInput): Tag!
 
   tagItem(input: TagItemInput): ItemTag!
-  consume(input: ConsumeInput): Storage!
+  consume(input: ConsumeInput): Storage
   fill(input: FillInput): Storage!
 }
 
 input ItemInput {
   name: String!
+  tags: [TagInput!]
 }
 
 input TagInput {
