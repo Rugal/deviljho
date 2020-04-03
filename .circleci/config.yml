@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Deploy master branch to Heroku development environment
           command: |
-            git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/spring-boot-development.git master
+            git push https://heroku:${HEROKU_API_KEY}@git.heroku.com/fridge-development.git master
 
 workflows:
   version: 2
@@ -55,8 +55,3 @@ workflows:
       - deploy:
           requires:
             - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
