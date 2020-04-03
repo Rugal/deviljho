@@ -62,11 +62,16 @@ public class StorageServiceImpl implements StorageService {
    * @param number fill quantity, positive number
    *
    * @return new storage record
+   *
+   * @throws RuntimeException Fill quantity is not positive
    */
   @Nonnull
   @Transactional
   @Override
   public Storage fill(final @Nonnull Item item, final int number) {
+    if (number < 1) {
+      throw new RuntimeException("Fill quantity must be positive");
+    }
     this.historyService.getDao().save(new History(item, number));
     return this.dao.save(new Storage(item, number));
   }
