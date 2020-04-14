@@ -7,7 +7,7 @@ type Query {
 type Item {
   iid: Int! @fake(type: number, options: {minNumber: 1, maxNumber: 100})
   name: String! @fake(type: jobTitle)
-  tags: [Tag!]! @listLength(min: 1, max: 5)
+  tags: [Tag!] @listLength(min: 1, max: 5)
   createAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
   updateAt: Int! @fake(type: number, options: {minNumber: 1584900000, maxNumber: 1586900000})
 }

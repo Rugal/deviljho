@@ -32,6 +32,7 @@ CREATE TABLE item (
   update_at bigint
 );
 
+CREATE UNIQUE INDEX unique_index_item_name ON item(name);
 
 --
 -- Name: tag; Type: TABLE; Schema: test; Owner: -
@@ -44,6 +45,8 @@ CREATE TABLE tag (
   update_at bigint
 );
 
+
+CREATE UNIQUE INDEX unique_index_tag_name ON tag(name);
 
 --
 -- Name: item_tag; Type: TABLE; Schema: test; Owner: -
