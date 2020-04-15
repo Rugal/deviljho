@@ -52,6 +52,9 @@ jobs:
     - name: Codecov Report
       run: curl -s https://codecov.io/bash | bash
 
+    - name: Update Development Environment Database
+      run: mvn -Dflyway.configFiles=configuration/db/development.properties flyway:clean flyway:migrate
+
     - name: Deploy to Heroku
       uses: akhileshns/heroku-deploy@v3.0.4
       with:
