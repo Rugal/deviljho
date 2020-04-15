@@ -10,6 +10,7 @@ on:
 
 env:
   SPRING_PROFILES_ACTIVE: ci
+  CODECOV_TOKEN: a61e53cf-e837-4d8a-9e8b-f20d40f03eda
 
 jobs:
   build:
@@ -47,3 +48,7 @@ jobs:
 
     - name: Full Test With Maven
       run: mvn clean -Dskip.surefire.tests=false -D=skip.failsafe.tests=false verify
+    
+    - name: Codecov Report
+      run: curl -s https://codecov.io/bash | bash
+

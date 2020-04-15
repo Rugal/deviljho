@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![CircleCI](https://circleci.com/gh/Rugal/fridge.svg?style=svg)](https://circleci.com/gh/Rugal/fridge)
 ![CI With Maven](https://github.com/Rugal/fridge/workflows/CI%20With%20Maven/badge.svg)
+[![codecov](https://codecov.io/gh/Rugal/fridge/branch/master/graph/badge.svg)](https://codecov.io/gh/Rugal/fridge)
 
 [![Heroku](http://heroku-badge.herokuapp.com/?app=fridge-developmen&svg=1&root=/actuator/info)](https://fridge-development.herokuapp.com/actuator/info)
 
