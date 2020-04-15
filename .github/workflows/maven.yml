@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: CI With Maven
+name: Build
 
 on:
   push:
@@ -52,3 +52,10 @@ jobs:
     - name: Codecov Report
       run: curl -s https://codecov.io/bash | bash
 
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.0.4
+      with:
+        heroku_api_key: ${{secrets.HEROKU_TOKEN}}
+        heroku_app_name: fridge-development
+        heroku_email: ryujinwrath@gmail.com
+        docker_heroku_process_type: web
