@@ -1,29 +1,48 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: CI With Maven
 
 on:
   push:
     branches:
       - master
 
+env:
+  SPRING_PROFILES_ACTIVE: ci
+  POSTGRES_USER: root
+  POSTGRES_DB: circletest
+  POSTGRES_PASSWORD:
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
+    services:
+      # Label used to access the service container
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2.1.0
+
     - name: Setup Java JDK 11
       uses: actions/setup-java@v1.3.0
       with:
         java-version: 11
+
     - name: Restore Build Cache
       uses: actions/cache@v1.1.2
       with:
         path: ~/.m2/repository
         key: v1-fridge-${{ hashFiles('pom.xml') }}
-    - name: Build with Maven
-      run: mvn clean compile
+
+    - name: Migrate Database With Flyway
+      run: mvn -Dflyway.configFiles=configuration/db/${SPRING_PROFILES_ACTIVE}.properties flyway:clean flyway:migrate
+
+    - name: Full Test With Maven
+      run: mvn clean -Dskip.surefire.tests=false -D=skip.failsafe.tests=false verify

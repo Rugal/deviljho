@@ -3,6 +3,7 @@
 ## Code Status
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![CircleCI](https://circleci.com/gh/Rugal/fridge.svg?style=svg)](https://circleci.com/gh/Rugal/fridge)  
+![Github Action](https://github.com/Rugal/fridge/workflows/Java%20CI%20with%20Maven/badge.svg)  
 
 [![Heroku](http://heroku-badge.herokuapp.com/?app=fridge-developmen&svg=1&root=/actuator/info)](https://fridge-development.herokuapp.com/actuator/info)
 
