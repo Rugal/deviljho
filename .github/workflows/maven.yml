@@ -41,7 +41,7 @@ jobs:
       uses: actions/cache@v1.1.2
       with:
         path: ~/.m2/repository
-        key: v1-fridge-${{ hashFiles('pom.xml') }}
+        key: v2-fridge-${{ hashFiles('pom.xml') }}
 
     - name: Migrate Database With Flyway
       run: mvn -Dflyway.configFiles=configuration/db/${SPRING_PROFILES_ACTIVE}.properties flyway:clean flyway:migrate
