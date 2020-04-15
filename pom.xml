@@ -163,6 +163,12 @@
       <plugin>
         <groupId>pl.project13.maven</groupId>
         <artifactId>git-commit-id-plugin</artifactId>
+        <configuration>
+          <gitDescribe>
+            <skip>false</skip>
+            <always>true</always>
+          </gitDescribe>
+        </configuration>
       </plugin>
       <!-- spring boot plugin -->
       <plugin>
