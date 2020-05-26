@@ -9,6 +9,8 @@ import ga.rugal.fridge.core.entity.Item;
 import ga.rugal.fridge.core.entity.Storage;
 import ga.rugal.fridge.core.service.HistoryService;
 import ga.rugal.fridge.core.service.StorageService;
+import ga.rugal.fridge.springmvc.graphql.exception.FillPositiveException;
+import ga.rugal.fridge.springmvc.graphql.exception.StorageNotEnoughException;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,24 +31,17 @@ public class StorageServiceImpl implements StorageService {
   private HistoryService historyService;
 
   /**
-   * Consume existing storage.
-   *
-   * @param s      existing storage object
-   * @param number a positive number
-   *
-   * @return empty object if last item is consumed, otherwise an updated storage object
-   *
-   * @throws RuntimeException not enough storage for consumption
+   * {@inheritDoc}
    */
   @Nonnull
   @Transactional
   @Override
   public Optional<Storage> consume(final @Nonnull Storage s, final int number) {
     if (s.getQuantity() < number) {
-      throw new RuntimeException("Not enough storage");
+      throw new StorageNotEnoughException(s.getSid());
     }
     // consume is negative
-    this.historyService.getDao().save(new History(s.getItem(), -1 * number));
+    this.historyService.getDao().save(History.consume(s.getItem(), number));
     if (s.getQuantity() > number) {
       return Optional.of(this.dao.save(s.consume(number)));
     }
@@ -56,23 +51,17 @@ public class StorageServiceImpl implements StorageService {
   }
 
   /**
-   * Fill in item with quantity.
-   *
-   * @param item   item object
-   * @param number fill quantity, positive number
-   *
-   * @return new storage record
-   *
-   * @throws RuntimeException Fill quantity is not positive
+   * {@inheritDoc}
    */
   @Nonnull
   @Transactional
   @Override
   public Storage fill(final @Nonnull Item item, final int number) {
     if (number < 1) {
-      throw new RuntimeException("Fill quantity must be positive");
+      throw new FillPositiveException();
     }
-    this.historyService.getDao().save(new History(item, number));
+    // Save history
+    this.historyService.getDao().save(History.fill(item, number));
     return this.dao.save(new Storage(item, number));
   }
 }

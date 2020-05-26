@@ -30,6 +30,30 @@ import lombok.NoArgsConstructor;
 @Table(name = "history", schema = SCHEMA)
 public class History {
 
+  /**
+   * Create history for fill.
+   *
+   * @param item   item object
+   * @param number a positive number
+   *
+   * @return history object with positive quantity
+   */
+  public static History fill(final Item item, final int number) {
+    return new History(item, number);
+  }
+
+  /**
+   * Create history for consumption.
+   *
+   * @param item   item object
+   * @param number a positive number
+   *
+   * @return history object with negative quantity
+   */
+  public static History consume(final Item item, final int number) {
+    return new History(item, -1 * number);
+  }
+
   private static final String SEQUENCE_NAME = "history_hid_seq";
 
   @Basic(optional = false)

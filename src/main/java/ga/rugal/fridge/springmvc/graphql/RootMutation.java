@@ -24,6 +24,7 @@ import ga.rugal.fridge.springmvc.graphql.exception.ItemDuplicateException;
 import ga.rugal.fridge.springmvc.graphql.exception.ItemNotFoundException;
 import ga.rugal.fridge.springmvc.graphql.exception.StorageNotFoundException;
 import ga.rugal.fridge.springmvc.graphql.exception.TagDuplicateException;
+import ga.rugal.fridge.springmvc.graphql.exception.TagNotFoundException;
 import ga.rugal.fridge.springmvc.mapper.ItemMapper;
 import ga.rugal.fridge.springmvc.mapper.ItemTagMapper;
 import ga.rugal.fridge.springmvc.mapper.StorageMapper;
@@ -97,10 +98,10 @@ public class RootMutation implements GraphQLMutationResolver, Mutation {
     final Optional<Item> optionalItem = this.itemService.getDao().findById(input.getIid());
     final Optional<Tag> optionalTag = this.tagService.getDao().findById(input.getIid());
     if (optionalItem.isEmpty()) {
-      throw new RuntimeException("Item not found");
+      throw new ItemNotFoundException(input.getIid());
     }
     if (optionalTag.isEmpty()) {
-      throw new RuntimeException("Tag not found");
+      throw new TagNotFoundException(input.getTid());
     }
 
     return ItemTagMapper.I.from(this.itemTagService.attachTag(optionalItem.get(),

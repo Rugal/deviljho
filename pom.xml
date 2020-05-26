@@ -15,9 +15,9 @@
   <url>https://rug.al</url>
 
   <scm>
-    <connection>scm:git:git@github.com:Rugal/spring-boot-template.git</connection>
-    <developerConnection>scm:git:git@github.com:Rugal/spring-boot-template.git</developerConnection>
-    <url>https://github.com/Rugal/spring-boot-template</url>
+    <connection>scm:git:git@github.com:Rugal/fridge.git</connection>
+    <developerConnection>scm:git:git@github.com:Rugal/fridge.git</developerConnection>
+    <url>https://github.com/Rugal/fridge</url>
     <tag>HEAD</tag>
   </scm>
 
